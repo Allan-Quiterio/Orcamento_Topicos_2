@@ -9,7 +9,7 @@ import java.util.*;
 @Repository
 public interface ModalidadeAplicacaoRepository extends JpaRepository<ModalidadeAplicacaoModel, Long> {
 
-    List<ModalidadeAplicacaoModel> findByCodigo(Float codigo);
+    Optional<ModalidadeAplicacaoModel> findByCodigo(Float codigo);
 
     List<ModalidadeAplicacaoModel> findByOrderByCodigoDesc();
 
