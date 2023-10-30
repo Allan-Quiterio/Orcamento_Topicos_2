@@ -49,7 +49,7 @@ public class UnidadeOrcamentariaService {
             unidadeOrcamentariaNovo = unidadeOrcamentariaRepository.save(unidadeOrcamentariaNovo);
             return convertUnidadeOrcamentariaModelToUnidadeOrcamentariaDto(unidadeOrcamentariaNovo);
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Campo(s) obrigatório(s) do Fonte Recurso não foi(foram) preenchido(s).");
+            throw new DataIntegrityException("Campo(s) obrigatório(s) da Unidade Orçamentária não foi(foram) preenchido(s).");
         }
     }
 
