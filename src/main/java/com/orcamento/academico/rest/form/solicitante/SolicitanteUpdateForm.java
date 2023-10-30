@@ -1,4 +1,4 @@
-package com.orcamento.academico.rest.form;
+package com.orcamento.academico.rest.form.solicitante;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.*;
