@@ -1,8 +1,8 @@
 package com.orcamento.academico.rest.controller;
 
 import com.orcamento.academico.rest.dto.ObjetivoEstrategicoDto;
-import com.orcamento.academico.rest.form.ObjetivoEstrategicoForm;
-import com.orcamento.academico.rest.form.ObjetivoEstrategicoUpdateForm;
+import com.orcamento.academico.rest.form.objetivoEstrategico.ObjetivoEstrategicoForm;
+import com.orcamento.academico.rest.form.objetivoEstrategico.ObjetivoEstrategicoUpdateForm;
 import com.orcamento.academico.service.ObjetivoEstrategicoService;
 import com.orcamento.academico.service.exceptions.ConstraintException;
 import jakarta.validation.Valid;

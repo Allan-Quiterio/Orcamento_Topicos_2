@@ -1,8 +1,8 @@
 package com.orcamento.academico.rest.controller;
 
 import com.orcamento.academico.rest.dto.TipoLancamentoDto;
-import com.orcamento.academico.rest.form.TipoLancamentoForm;
-import com.orcamento.academico.rest.form.TipoLancamentoUpdateForm;
+import com.orcamento.academico.rest.form.tipoLancamento.TipoLancamentoForm;
+import com.orcamento.academico.rest.form.tipoLancamento.TipoLancamentoUpdateForm;
 import com.orcamento.academico.service.TipoLancamentoService;
 import com.orcamento.academico.service.exceptions.ConstraintException;
 import jakarta.validation.Valid;

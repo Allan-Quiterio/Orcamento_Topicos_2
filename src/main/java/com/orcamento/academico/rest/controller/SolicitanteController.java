@@ -1,8 +1,8 @@
 package com.orcamento.academico.rest.controller;
 
 import com.orcamento.academico.rest.dto.SolicitanteDto;
-import com.orcamento.academico.rest.form.SolicitanteForm;
-import com.orcamento.academico.rest.form.SolicitanteUpdateForm;
+import com.orcamento.academico.rest.form.solicitante.SolicitanteForm;
+import com.orcamento.academico.rest.form.solicitante.SolicitanteUpdateForm;
 import com.orcamento.academico.service.SolicitanteService;
 import com.orcamento.academico.service.exceptions.ConstraintException;
 import jakarta.validation.Valid;
