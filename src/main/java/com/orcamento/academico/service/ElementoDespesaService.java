@@ -3,7 +3,7 @@ package com.orcamento.academico.service;
 import com.orcamento.academico.model.ElementoDespesaModel;
 import com.orcamento.academico.repository.ElementoDespesaRepository;
 import com.orcamento.academico.rest.dto.ElementoDespesaDto;
-import com.orcamento.academico.rest.form.ElementoDespesa.ElementoDespesaForm;
+import com.orcamento.academico.rest.form.elementoDespesa.ElementoDespesaForm;
 import com.orcamento.academico.service.exceptions.DataIntegrityException;
 import com.orcamento.academico.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

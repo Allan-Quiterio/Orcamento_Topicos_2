@@ -1,7 +1,7 @@
 package com.orcamento.academico.rest.controller;
 
 import com.orcamento.academico.rest.dto.ElementoDespesaDto;
-import com.orcamento.academico.rest.form.ElementoDespesa.ElementoDespesaForm;
+import com.orcamento.academico.rest.form.elementoDespesa.ElementoDespesaForm;
 import com.orcamento.academico.service.ElementoDespesaService;
 import com.orcamento.academico.service.exceptions.ConstraintException;
 import jakarta.validation.Valid;

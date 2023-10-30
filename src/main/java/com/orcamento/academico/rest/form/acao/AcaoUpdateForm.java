@@ -1,4 +1,4 @@
-package com.orcamento.academico.rest.form.UnidadeOrcamentaria;
+package com.orcamento.academico.rest.form.acao;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.*;
@@ -7,7 +7,7 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class UnidadeOrcamentariaUpdateForm {
+public class AcaoUpdateForm {
     @NotNull(message = "O código não pode ser nulo.")
     private Integer codigo;
 
