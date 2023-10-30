@@ -5,7 +5,7 @@ import com.orcamento.academico.rest.form.TipoTransacaoForm;
 import com.orcamento.academico.rest.form.TipoTransacaoUpdateForm;
 import com.orcamento.academico.service.TipoTransacaoService;
 import com.orcamento.academico.service.exceptions.ConstraintException;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;

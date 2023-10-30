@@ -5,7 +5,7 @@ import com.orcamento.academico.rest.form.unidade.UnidadeForm;
 import com.orcamento.academico.rest.form.unidade.UnidadeUpdateForm;
 import com.orcamento.academico.service.UnidadeService;
 import com.orcamento.academico.service.exceptions.ConstraintException;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;

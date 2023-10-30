@@ -4,7 +4,7 @@ import com.orcamento.academico.rest.dto.AcaoDto;
 import com.orcamento.academico.rest.form.acao.AcaoForm;
 import com.orcamento.academico.service.AcaoService;
 import com.orcamento.academico.service.exceptions.ConstraintException;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;

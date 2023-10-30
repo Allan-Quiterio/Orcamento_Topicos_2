@@ -3,7 +3,7 @@ package com.orcamento.academico.rest.controller.exceptions;
 import com.orcamento.academico.service.exceptions.BusinessRuleException;
 import com.orcamento.academico.service.exceptions.ConstraintException;
 import com.orcamento.academico.service.exceptions.DataIntegrityException;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

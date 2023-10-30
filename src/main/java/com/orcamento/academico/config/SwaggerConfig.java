@@ -16,8 +16,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .useDefaultResponseMessages(false)
                 .select()
-                .apis(RequestHandlerSelectors
-                        .basePackage("com.orcamento.academico"))
+                .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());

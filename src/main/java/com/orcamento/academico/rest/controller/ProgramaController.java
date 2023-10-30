@@ -4,7 +4,7 @@ import com.orcamento.academico.rest.dto.ProgramaDto;
 import com.orcamento.academico.rest.form.programa.ProgramaForm;
 import com.orcamento.academico.service.ProgramaService;
 import com.orcamento.academico.service.exceptions.ConstraintException;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
