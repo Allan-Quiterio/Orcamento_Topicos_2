@@ -9,25 +9,25 @@ public class LancamentoDto {
     private Integer id;
     private Byte lancamentoInvalido;
     private Integer numeroLancamento;
-    private TipoLancamentoModel tipoLancamento;
+    private Integer idTipoLancamento;
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataLancamento;
     private Integer idLancamentoPai;
-    private UnidadeModel idUnidade;
+    private Integer idUnidade;
     private String descricao;
-    private UnidadeOrcamentariaModel idUnidadeOrcamentaria;
-    private ProgramaModel idPrograma;
-    private AcaoModel idAcao;
-    private FonteRecursoModel idFonteRecurso;
-    private GrupoDespesaModel idGrupoDespesa;
-    private ModalidadeAplicacaoModel idModalidadeAplicacao;
-    private ElementoDespesaModel idElementoDespesa;
-    private SolicitanteModel idSolicitante;
+    private Integer idUnidadeOrcamentaria;
+    private Integer idPrograma;
+    private Integer idAcao;
+    private Integer idFonteRecurso;
+    private Integer idGrupoDespesa;
+    private Integer idModalidadeAplicacao;
+    private Integer idElementoDespesa;
+    private Integer idSolicitante;
     private Character ged;
     private String contratado;
-    private ObjetivoEstrategicoModel idObjetivoEstrategico;
+    private Integer idObjetivoEstrategico;
     private Float valor;
-    private TipoTransacaoModel idTipoTransacaoModel;
+    private Integer idTipoTransacao;
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataCadastro;
     @JsonFormat(pattern = "dd/MM/yyyy")
