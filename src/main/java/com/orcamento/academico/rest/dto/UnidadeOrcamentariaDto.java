@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UnidadeOrcamentariaDto {
-    private Integer id;
+    private Long id;
     private Integer codigo;
     private String nome;
     @JsonFormat(pattern = "dd/MM/yyyy")

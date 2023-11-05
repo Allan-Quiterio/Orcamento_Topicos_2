@@ -2,6 +2,7 @@ package com.orcamento.academico.rest.controller;
 
 import com.orcamento.academico.rest.dto.ElementoDespesaDto;
 import com.orcamento.academico.rest.form.elementoDespesa.ElementoDespesaForm;
+import com.orcamento.academico.rest.form.elementoDespesa.ElementoDespesaUpdateForm;
 import com.orcamento.academico.service.ElementoDespesaService;
 import com.orcamento.academico.service.exceptions.ConstraintException;
 import javax.validation.Valid;
@@ -25,7 +26,7 @@ public class ElementoDespesaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ElementoDespesaDto> find(@PathVariable("id") Integer id) {
+    public ResponseEntity<ElementoDespesaDto> find(@PathVariable("id") Long id) {
         ElementoDespesaDto elementoDespesaDto = elementoDespesaService.findById(id);
         return ResponseEntity.ok().body(elementoDespesaDto);
     }
@@ -41,8 +42,8 @@ public class ElementoDespesaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ElementoDespesaDto> update(@Valid @RequestBody ElementoDespesaForm elementoDespesaUpdateForm,
-                                                  @PathVariable("id") Integer id, BindingResult br) {
+    public ResponseEntity<ElementoDespesaDto> update(@Valid @RequestBody ElementoDespesaUpdateForm elementoDespesaUpdateForm,
+                                                  @PathVariable("id") Long id, BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
 
@@ -51,7 +52,7 @@ public class ElementoDespesaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
         elementoDespesaService.delete(id);
         return ResponseEntity.noContent().build();
     }

@@ -22,7 +22,7 @@ public class UnidadeOrcamentariaService {
     @Autowired
     UnidadeOrcamentariaRepository unidadeOrcamentariaRepository;
 
-    public UnidadeOrcamentariaDto findById(Integer id) {
+    public UnidadeOrcamentariaDto findById(Long id) {
         try {
             Optional<UnidadeOrcamentariaModel> unidadeOrcamentariaModel = unidadeOrcamentariaRepository.findById(id);
             if (unidadeOrcamentariaModel.isPresent()) {
@@ -53,7 +53,7 @@ public class UnidadeOrcamentariaService {
         }
     }
 
-    public UnidadeOrcamentariaDto update(UnidadeOrcamentariaUpdateForm unidadeOrcamentariaUpdateForm, Integer id) {
+    public UnidadeOrcamentariaDto update(UnidadeOrcamentariaUpdateForm unidadeOrcamentariaUpdateForm, Long id) {
         try {
             Optional<UnidadeOrcamentariaModel> unidadeOrcamentariaExistente = unidadeOrcamentariaRepository.findById(id);
             if (unidadeOrcamentariaExistente.isPresent()) {
@@ -72,7 +72,7 @@ public class UnidadeOrcamentariaService {
         }
     }
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         try {
             if (unidadeOrcamentariaRepository.existsById(id)) {
                 unidadeOrcamentariaRepository.deleteById(id);

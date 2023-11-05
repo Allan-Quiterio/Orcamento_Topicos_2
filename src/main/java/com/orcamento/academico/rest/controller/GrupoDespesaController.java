@@ -1,8 +1,8 @@
 package com.orcamento.academico.rest.controller;
 
 import com.orcamento.academico.rest.dto.GrupoDespesaDto;
-import com.orcamento.academico.rest.form.GrupoDespesaForm;
-import com.orcamento.academico.rest.form.GrupoDespesaUpdateForm;
+import com.orcamento.academico.rest.form.grupoDespesa.GrupoDespesaForm;
+import com.orcamento.academico.rest.form.grupoDespesa.GrupoDespesaUpdateForm;
 import com.orcamento.academico.service.GrupoDespesaService;
 import com.orcamento.academico.service.exceptions.ConstraintException;
 import javax.validation.Valid;

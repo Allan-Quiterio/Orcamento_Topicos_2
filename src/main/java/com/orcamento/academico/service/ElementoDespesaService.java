@@ -4,6 +4,7 @@ import com.orcamento.academico.model.ElementoDespesaModel;
 import com.orcamento.academico.repository.ElementoDespesaRepository;
 import com.orcamento.academico.rest.dto.ElementoDespesaDto;
 import com.orcamento.academico.rest.form.elementoDespesa.ElementoDespesaForm;
+import com.orcamento.academico.rest.form.elementoDespesa.ElementoDespesaUpdateForm;
 import com.orcamento.academico.service.exceptions.DataIntegrityException;
 import com.orcamento.academico.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class ElementoDespesaService {
     @Autowired
     ElementoDespesaRepository elementoDespesaRepository;
 
-    public ElementoDespesaDto findById(Integer id) {
+    public ElementoDespesaDto findById(Long id) {
         try {
             Optional<ElementoDespesaModel> elementoDespesaModel = elementoDespesaRepository.findById(id);
             if (elementoDespesaModel.isPresent()) {
@@ -52,7 +53,7 @@ public class ElementoDespesaService {
         }
     }
 
-    public ElementoDespesaDto update(ElementoDespesaForm elementoDespesaUpdateForm, Integer id) {
+    public ElementoDespesaDto update(ElementoDespesaUpdateForm elementoDespesaUpdateForm, Long id) {
         try {
             Optional<ElementoDespesaModel> elementoDespesaExistente = elementoDespesaRepository.findById(id);
             if (elementoDespesaExistente.isPresent()) {
@@ -71,7 +72,7 @@ public class ElementoDespesaService {
         }
     }
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         try {
             if (elementoDespesaRepository.existsById(id)) {
                 elementoDespesaRepository.deleteById(id);

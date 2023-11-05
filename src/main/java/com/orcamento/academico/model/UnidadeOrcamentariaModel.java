@@ -8,12 +8,12 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name="unidadeOrcamentaria")
+@Table(name="TB_UNIDADE_ORCAMENTARIA")
 public class UnidadeOrcamentariaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "codigo", length = 100, nullable = false)
     private Integer codigo;

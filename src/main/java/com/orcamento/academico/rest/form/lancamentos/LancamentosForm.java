@@ -1,4 +1,4 @@
-package com.orcamento.academico.rest.form;
+package com.orcamento.academico.rest.form.lancamentos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

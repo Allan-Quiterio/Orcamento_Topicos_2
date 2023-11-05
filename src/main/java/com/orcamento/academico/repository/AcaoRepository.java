@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface AcaoRepository extends JpaRepository<AcaoModel, Integer> {
+public interface AcaoRepository extends JpaRepository<AcaoModel, Long> {
     Optional<AcaoModel> findByCodigo(Integer codigo);
 
     List<AcaoModel> findByOrderByCodigoDesc();

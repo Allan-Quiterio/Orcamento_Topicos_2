@@ -4,6 +4,7 @@ import com.orcamento.academico.model.AcaoModel;
 import com.orcamento.academico.repository.AcaoRepository;
 import com.orcamento.academico.rest.dto.AcaoDto;
 import com.orcamento.academico.rest.form.acao.AcaoForm;
+import com.orcamento.academico.rest.form.acao.AcaoUpdateForm;
 import com.orcamento.academico.service.exceptions.DataIntegrityException;
 import com.orcamento.academico.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class AcaoService {
     @Autowired
     AcaoRepository acaoRepository;
 
-    public AcaoDto findById(Integer id) {
+    public AcaoDto findById(Long id) {
         try {
             Optional<AcaoModel> acaoModel = acaoRepository.findById(id);
             if (acaoModel.isPresent()) {
@@ -52,7 +53,7 @@ public class AcaoService {
         }
     }
 
-    public AcaoDto update(AcaoForm acaoUpdateForm, Integer id) {
+    public AcaoDto update(AcaoUpdateForm acaoUpdateForm, Long id) {
         try {
             Optional<AcaoModel> acaoExistente = acaoRepository.findById(id);
             if (acaoExistente.isPresent()) {
@@ -71,7 +72,7 @@ public class AcaoService {
         }
     }
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         try {
             if (acaoRepository.existsById(id)) {
                 acaoRepository.deleteById(id);

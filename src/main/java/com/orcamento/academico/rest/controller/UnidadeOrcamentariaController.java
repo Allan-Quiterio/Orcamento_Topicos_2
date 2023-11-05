@@ -26,7 +26,7 @@ public class UnidadeOrcamentariaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UnidadeOrcamentariaDto> find(@PathVariable("id") Integer id) {
+    public ResponseEntity<UnidadeOrcamentariaDto> find(@PathVariable("id") Long id) {
         UnidadeOrcamentariaDto unidadeOrcamentariaDto = unidadeOrcamentariaService.findById(id);
         return ResponseEntity.ok().body(unidadeOrcamentariaDto);
     }
@@ -43,7 +43,7 @@ public class UnidadeOrcamentariaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<UnidadeOrcamentariaDto> update(@Valid @RequestBody UnidadeOrcamentariaUpdateForm unidadeOrcamentariaUpdateForm,
-                                                  @PathVariable("id") Integer id, BindingResult br) {
+                                                  @PathVariable("id") Long id, BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
 
@@ -52,7 +52,7 @@ public class UnidadeOrcamentariaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
         unidadeOrcamentariaService.delete(id);
         return ResponseEntity.noContent().build();
     }

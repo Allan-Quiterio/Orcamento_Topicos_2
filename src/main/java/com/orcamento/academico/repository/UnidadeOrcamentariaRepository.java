@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UnidadeOrcamentariaRepository extends JpaRepository<UnidadeOrcamentariaModel, Integer> {
+public interface UnidadeOrcamentariaRepository extends JpaRepository<UnidadeOrcamentariaModel, Long> {
     Optional<UnidadeOrcamentariaModel> findByCodigo(Integer codigo);
 
     List<UnidadeOrcamentariaModel> findByOrderByCodigoDesc();

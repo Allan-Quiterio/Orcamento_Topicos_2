@@ -1,8 +1,8 @@
 package com.orcamento.academico.rest.controller;
 
 import com.orcamento.academico.rest.dto.FonteRecursoDto;
-import com.orcamento.academico.rest.form.FonteRecursoForm;
-import com.orcamento.academico.rest.form.FonteRecursoUpdateForm;
+import com.orcamento.academico.rest.form.fonteRecurso.FonteRecursoForm;
+import com.orcamento.academico.rest.form.fonteRecurso.FonteRecursoUpdateForm;
 import com.orcamento.academico.service.FonteRecursoService;
 import com.orcamento.academico.service.exceptions.ConstraintException;
 import javax.validation.Valid;

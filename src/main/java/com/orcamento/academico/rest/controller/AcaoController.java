@@ -2,6 +2,7 @@ package com.orcamento.academico.rest.controller;
 
 import com.orcamento.academico.rest.dto.AcaoDto;
 import com.orcamento.academico.rest.form.acao.AcaoForm;
+import com.orcamento.academico.rest.form.acao.AcaoUpdateForm;
 import com.orcamento.academico.service.AcaoService;
 import com.orcamento.academico.service.exceptions.ConstraintException;
 import javax.validation.Valid;
@@ -25,7 +26,7 @@ public class AcaoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AcaoDto> find(@PathVariable("id") Integer id) {
+    public ResponseEntity<AcaoDto> find(@PathVariable("id") Long id) {
         AcaoDto acaoDto = acaoService.findById(id);
         return ResponseEntity.ok().body(acaoDto);
     }
@@ -41,8 +42,8 @@ public class AcaoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AcaoDto> update(@Valid @RequestBody AcaoForm acaoUpdateForm,
-                                                  @PathVariable("id") Integer id, BindingResult br) {
+    public ResponseEntity<AcaoDto> update(@Valid @RequestBody AcaoUpdateForm acaoUpdateForm,
+                                                  @PathVariable("id") Long id, BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
 
@@ -51,7 +52,7 @@ public class AcaoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
         acaoService.delete(id);
         return ResponseEntity.noContent().build();
     }

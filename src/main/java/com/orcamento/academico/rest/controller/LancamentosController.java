@@ -1,8 +1,8 @@
 package com.orcamento.academico.rest.controller;
 
 import com.orcamento.academico.rest.dto.LancamentosDto;
-import com.orcamento.academico.rest.form.LancamentosForm;
-import com.orcamento.academico.rest.form.LancamentosUpdateForm;
+import com.orcamento.academico.rest.form.lancamentos.LancamentosForm;
+import com.orcamento.academico.rest.form.lancamentos.LancamentosUpdateForm;
 import com.orcamento.academico.service.LancamentosService;
 import com.orcamento.academico.service.exceptions.ConstraintException;
 import org.springframework.beans.factory.annotation.Autowired;

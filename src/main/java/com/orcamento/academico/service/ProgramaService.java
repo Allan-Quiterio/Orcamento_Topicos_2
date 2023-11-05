@@ -4,6 +4,7 @@ import com.orcamento.academico.model.ProgramaModel;
 import com.orcamento.academico.repository.ProgramaRepository;
 import com.orcamento.academico.rest.dto.ProgramaDto;
 import com.orcamento.academico.rest.form.programa.ProgramaForm;
+import com.orcamento.academico.rest.form.programa.ProgramaUpdateForm;
 import com.orcamento.academico.service.exceptions.DataIntegrityException;
 import com.orcamento.academico.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class ProgramaService {
     @Autowired
     ProgramaRepository programaRepository;
 
-    public ProgramaDto findById(Integer id) {
+    public ProgramaDto findById(Long id) {
         try {
             Optional<ProgramaModel> programaModel = programaRepository.findById(id);
             if (programaModel.isPresent()) {
@@ -52,7 +53,7 @@ public class ProgramaService {
         }
     }
 
-    public ProgramaDto update(ProgramaForm programaUpdateForm, Integer id) {
+    public ProgramaDto update(ProgramaUpdateForm programaUpdateForm, Long id) {
         try {
             Optional<ProgramaModel> programaExistente = programaRepository.findById(id);
             if (programaExistente.isPresent()) {
@@ -71,7 +72,7 @@ public class ProgramaService {
         }
     }
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         try {
             if (programaRepository.existsById(id)) {
                 programaRepository.deleteById(id);

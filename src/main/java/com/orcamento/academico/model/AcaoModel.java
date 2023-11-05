@@ -7,12 +7,12 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-@Table(name="acao")
+@Table(name="TB_ACAO")
 public class AcaoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "codigo", length = 100, nullable = false)
     private Integer codigo;

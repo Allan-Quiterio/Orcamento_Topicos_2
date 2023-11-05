@@ -1,4 +1,4 @@
-package com.orcamento.academico.rest.form;
+package com.orcamento.academico.rest.form.modalidadeAplicacao;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.validation.constraints.*;
@@ -7,7 +7,8 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class GrupoDespesaUpdateForm {
+public class ModalidadeAplicacaoForm {
+
   @NotEmpty
   @NotBlank(message = "O Codigo não pode estar em branco.")
   private Float codigo;

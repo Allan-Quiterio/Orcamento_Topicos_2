@@ -1,8 +1,8 @@
 package com.orcamento.academico.rest.controller;
 
 import com.orcamento.academico.rest.dto.TipoTransacaoDto;
-import com.orcamento.academico.rest.form.TipoTransacaoForm;
-import com.orcamento.academico.rest.form.TipoTransacaoUpdateForm;
+import com.orcamento.academico.rest.form.tipoTransacao.TipoTransacaoForm;
+import com.orcamento.academico.rest.form.tipoTransacao.TipoTransacaoUpdateForm;
 import com.orcamento.academico.service.TipoTransacaoService;
 import com.orcamento.academico.service.exceptions.ConstraintException;
 import javax.validation.Valid;

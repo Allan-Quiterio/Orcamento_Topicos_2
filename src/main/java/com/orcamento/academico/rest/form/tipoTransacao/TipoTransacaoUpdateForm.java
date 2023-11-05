@@ -1,4 +1,4 @@
-package com.orcamento.academico.rest.form;
+package com.orcamento.academico.rest.form.tipoTransacao;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.validation.constraints.*;
@@ -7,11 +7,7 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class GrupoDespesaForm {
-  @NotEmpty
-  @NotBlank(message = "O Codigo não pode estar em branco.")
-  private Float codigo;
-
+public class TipoTransacaoUpdateForm {
   @NotEmpty
   @NotBlank(message = "O Nome não pode estar em branco.")
   @Size(min = 10, max = 255, message = "O Nome deve ter entre 10 e 255 caracteres.")

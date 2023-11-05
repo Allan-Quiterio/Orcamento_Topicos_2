@@ -2,6 +2,7 @@ package com.orcamento.academico.rest.controller;
 
 import com.orcamento.academico.rest.dto.ProgramaDto;
 import com.orcamento.academico.rest.form.programa.ProgramaForm;
+import com.orcamento.academico.rest.form.programa.ProgramaUpdateForm;
 import com.orcamento.academico.service.ProgramaService;
 import com.orcamento.academico.service.exceptions.ConstraintException;
 import javax.validation.Valid;
@@ -25,7 +26,7 @@ public class ProgramaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProgramaDto> find(@PathVariable("id") Integer id) {
+    public ResponseEntity<ProgramaDto> find(@PathVariable("id") Long id) {
         ProgramaDto programaDto = programaService.findById(id);
         return ResponseEntity.ok().body(programaDto);
     }
@@ -41,8 +42,8 @@ public class ProgramaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProgramaDto> update(@Valid @RequestBody ProgramaForm programaUpdateForm,
-                                                  @PathVariable("id") Integer id, BindingResult br) {
+    public ResponseEntity<ProgramaDto> update(@Valid @RequestBody ProgramaUpdateForm programaUpdateForm,
+                                                  @PathVariable("id") Long id, BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
 
@@ -51,7 +52,7 @@ public class ProgramaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
         programaService.delete(id);
         return ResponseEntity.noContent().build();
     }

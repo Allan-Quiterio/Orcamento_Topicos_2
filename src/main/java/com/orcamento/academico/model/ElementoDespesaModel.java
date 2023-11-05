@@ -7,12 +7,12 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-@Table(name="elementoDespesa")
+@Table(name="TB_ELEMENTO_DESPESA")
 public class ElementoDespesaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "codigo", length = 100, nullable = false)
     private Integer codigo;

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ProgramaRepository extends JpaRepository<ProgramaModel, Integer> {
+public interface ProgramaRepository extends JpaRepository<ProgramaModel, Long> {
     Optional<ProgramaModel> findByCodigo(Integer codigo);
 
     List<ProgramaModel> findByOrderByCodigoDesc();

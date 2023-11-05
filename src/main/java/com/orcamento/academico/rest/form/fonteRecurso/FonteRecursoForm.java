@@ -1,4 +1,4 @@
-package com.orcamento.academico.rest.form;
+package com.orcamento.academico.rest.form.fonteRecurso;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.validation.constraints.*;
@@ -7,7 +7,8 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class FonteRecursoUpdateForm {
+public class FonteRecursoForm {
+
     @NotEmpty
     @NotBlank(message = "O Codigo não pode estar em branco.")
     private Float codigo;
@@ -27,3 +28,4 @@ public class FonteRecursoUpdateForm {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataAlteracao;
 }
+

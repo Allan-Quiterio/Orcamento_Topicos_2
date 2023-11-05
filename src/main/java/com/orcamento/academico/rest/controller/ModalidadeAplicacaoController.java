@@ -1,8 +1,8 @@
 package com.orcamento.academico.rest.controller;
 
 import com.orcamento.academico.rest.dto.ModalidadeAplicacaoDto;
-import com.orcamento.academico.rest.form.ModalidadeAplicacaoForm;
-import com.orcamento.academico.rest.form.ModalidadeAplicacaoUpdateForm;
+import com.orcamento.academico.rest.form.modalidadeAplicacao.ModalidadeAplicacaoForm;
+import com.orcamento.academico.rest.form.modalidadeAplicacao.ModalidadeAplicacaoUpdateForm;
 import com.orcamento.academico.service.ModalidadeAplicacaoService;
 import com.orcamento.academico.service.exceptions.ConstraintException;
 import javax.validation.Valid;
