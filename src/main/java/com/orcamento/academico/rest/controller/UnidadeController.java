@@ -18,17 +18,17 @@ import java.util.List;
 public class UnidadeController {
 
     @Autowired
-    private UnidadeService UnidadeService;
+    private UnidadeService unidadeService;
 
     @GetMapping
     public ResponseEntity<List<UnidadeDto>> findAll() {
-        List<UnidadeDto> unidadeDtoList = UnidadeService.findAll();
+        List<UnidadeDto> unidadeDtoList = unidadeService.findAll();
         return ResponseEntity.ok().body(unidadeDtoList);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UnidadeDto> find(@PathVariable("id") long id) {
-        UnidadeDto unidadeDto = UnidadeService.findById(id);
+        UnidadeDto unidadeDto = unidadeService.findById(id);
         return ResponseEntity.ok().body(unidadeDto);
     }
 
@@ -38,7 +38,7 @@ public class UnidadeController {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
 
-        UnidadeDto unidadeDto = UnidadeService.insert(unidadeForm);
+        UnidadeDto unidadeDto = unidadeService.insert(unidadeForm);
         return ResponseEntity.ok().body(unidadeDto);
     }
 
@@ -48,13 +48,13 @@ public class UnidadeController {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
 
-        UnidadeDto unidadeDto = UnidadeService.update(unidadeUpdateForm, id);
+        UnidadeDto unidadeDto = unidadeService.update(unidadeUpdateForm, id);
         return ResponseEntity.ok().body(unidadeDto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") long id) {
-        UnidadeService.delete(id);
+        unidadeService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

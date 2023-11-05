@@ -1,11 +1,10 @@
 package com.orcamento.academico.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.orcamento.academico.model.*;
 
 import java.time.LocalDate;
 
-public class LancamentoDto {
+public class LancamentosDto {
     private Integer id;
     private Byte lancamentoInvalido;
     private Integer numeroLancamento;
