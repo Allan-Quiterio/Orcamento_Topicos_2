@@ -1,6 +1,6 @@
 package com.orcamento.academico.rest.controller;
 
-import com.orcamento.academico.rest.dto.UnidadeOrcamentaria.UnidadeOrcamentariaDto;
+import com.orcamento.academico.rest.dto.UnidadeOrcamentariaDto;
 import com.orcamento.academico.rest.form.unidadeOrcamentaria.UnidadeOrcamentariaForm;
 import com.orcamento.academico.rest.form.unidadeOrcamentaria.UnidadeOrcamentariaUpdateForm;
 import com.orcamento.academico.service.UnidadeOrcamentariaService;

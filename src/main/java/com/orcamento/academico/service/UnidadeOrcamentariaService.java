@@ -2,7 +2,7 @@ package com.orcamento.academico.service;
 
 import com.orcamento.academico.model.UnidadeOrcamentariaModel;
 import com.orcamento.academico.repository.UnidadeOrcamentariaRepository;
-import com.orcamento.academico.rest.dto.UnidadeOrcamentaria.UnidadeOrcamentariaDto;
+import com.orcamento.academico.rest.dto.UnidadeOrcamentariaDto;
 import com.orcamento.academico.rest.form.unidadeOrcamentaria.UnidadeOrcamentariaForm;
 import com.orcamento.academico.rest.form.unidadeOrcamentaria.UnidadeOrcamentariaUpdateForm;
 import com.orcamento.academico.service.exceptions.DataIntegrityException;

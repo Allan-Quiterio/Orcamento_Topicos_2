@@ -81,5 +81,5 @@ public class LancamentosModel {
     private LocalDate dataAlteracao;
 
     @Column(name = "anoOrcamento", nullable = false)
-    private LocalDate anoOrcamento;
+    private Short anoOrcamento;
 }

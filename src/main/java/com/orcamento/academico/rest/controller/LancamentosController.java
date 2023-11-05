@@ -1,9 +1,9 @@
 package com.orcamento.academico.rest.controller;
 
-import com.orcamento.academico.rest.dto.TipoLancamentoDto;
-import com.orcamento.academico.rest.form.tipoLancamento.TipoLancamentoForm;
-import com.orcamento.academico.rest.form.tipoLancamento.TipoLancamentoUpdateForm;
-import com.orcamento.academico.service.TipoLancamentoService;
+import com.orcamento.academico.rest.dto.LancamentosDto;
+import com.orcamento.academico.rest.form.LancamentosForm;
+import com.orcamento.academico.rest.form.LancamentosUpdateForm;
+import com.orcamento.academico.service.LancamentosService;
 import com.orcamento.academico.service.exceptions.ConstraintException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,43 +18,43 @@ import java.util.List;
 public class LancamentosController {
 
     @Autowired
-    private TipoLancamentoService tipoLancamentoService;
+    private LancamentosService lancamentosService;
 
     @GetMapping
-    public ResponseEntity<List<TipoLancamentoDto>> findAll() {
-        List<TipoLancamentoDto> tipoLancamentoDtoList = tipoLancamentoService.findAll();
-        return ResponseEntity.ok().body(tipoLancamentoDtoList);
+    public ResponseEntity<List<LancamentosDto>> findAll() {
+        List<LancamentosDto> lancamentosDtoList = lancamentosService.findAll();
+        return ResponseEntity.ok().body(lancamentosDtoList);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TipoLancamentoDto> find(@PathVariable("id") long id) {
-        TipoLancamentoDto tipoLancamentoDto = tipoLancamentoService.findById(id);
-        return ResponseEntity.ok().body(tipoLancamentoDto);
+    public ResponseEntity<LancamentosDto> find(@PathVariable("id") Integer id) {
+        LancamentosDto lancamentosDto = lancamentosService.findById(id);
+        return ResponseEntity.ok().body(lancamentosDto);
     }
 
     @PostMapping
-    public ResponseEntity<TipoLancamentoDto> insert(@Valid @RequestBody TipoLancamentoForm tipoLancamentoForm,
+    public ResponseEntity<LancamentosDto> insert(@Valid @RequestBody LancamentosForm lancamentosForm,
                                                     BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
 
-        TipoLancamentoDto tipoLancamentoDto = tipoLancamentoService.insert(tipoLancamentoForm);
-        return ResponseEntity.ok().body(tipoLancamentoDto);
+        LancamentosDto lancamentosDto = lancamentosService.insert(lancamentosForm);
+        return ResponseEntity.ok().body(lancamentosDto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TipoLancamentoDto> update(@Valid @RequestBody TipoLancamentoUpdateForm tipoLancamentoUpdateForm,
-                                                    @PathVariable("id") long id, BindingResult br) {
+    public ResponseEntity<LancamentosDto> update(@Valid @RequestBody LancamentosUpdateForm lancamentosUpdateForm,
+                                                    @PathVariable("id") Integer id, BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
 
-        TipoLancamentoDto tipoLancamentoDto = tipoLancamentoService.update(tipoLancamentoUpdateForm, id);
-        return ResponseEntity.ok().body(tipoLancamentoDto);
+        LancamentosDto lancamentosDto = lancamentosService.update(lancamentosUpdateForm, id);
+        return ResponseEntity.ok().body(lancamentosDto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") long id) {
-        tipoLancamentoService.delete(id);
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
+        lancamentosService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

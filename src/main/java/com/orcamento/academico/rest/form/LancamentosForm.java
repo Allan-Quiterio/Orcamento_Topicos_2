@@ -1,5 +1,6 @@
 package com.orcamento.academico.rest.form;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.validation.constraints.*;
@@ -8,41 +9,50 @@ import java.time.LocalDate;
 @Data
 public class LancamentosForm {
     @NotNull(message = "O campo 'lancamentoInvalido' não pode estar nulo.")
-    private boolean lancamentoInvalido;
+    private Byte lancamentoInvalido;
 
-    private int numeroLancamento;
+    private Integer numeroLancamento;
+
+    @NotNull(message = "A data de Lançamento não pode estar nula.")
+    @FutureOrPresent(message = "Data de Lançamento deve ser data atual ou futura.")
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate dataLancamento;
 
     @NotEmpty
     @NotBlank(message = "A descrição não pode estar em branco.")
     @Size(max = 255)
     private String descricao;
 
-    @NotNull(message = "A data de Lançamento não pode estar nula.")
-    @FutureOrPresent(message = "Data de Lançamento deve ser data atual ou futura.")
-    private LocalDate dataLancamento;
-
+    private Integer idTipoLancamento;
     private Integer idLancamentoPai;
-
-    @NotNull(message = "Valor não pode ser nulo.")
-    @Positive(message = "Valor do Lançamento não pode ser menor ou igual a zero")
-    private float valor;
-
-    private int idTipoLancamento;
-    private int idUnidade;
-    private int idUnidadeOrcamentaria;
-    private int idPrograma;
-    private int idAcao;
-    private int idFonteRecurso;
-    private int idGrupoDespesa;
-    private int idModalidadeAplicacao;
-    private int idElementoDespesa;
+    private Integer idUnidade;
+    private Integer idUnidadeOrcamentaria;
+    private Integer idPrograma;
+    private Integer idAcao;
+    private Integer idFonteRecurso;
+    private Integer idGrupoDespesa;
+    private Integer idModalidadeAplicacao;
+    private Integer idElementoDespesa;
     private Integer idSolicitante;
     private Integer idObjetivoEstrategico;
-    private int idTipoTransacao;
-    private String ged;
+    private Integer idTipoTransacao;
+
+    private Character ged;
 
     @Size(max = 255)
     private String contratado;
 
-    private short anoOrcamento;
+    @NotNull(message = "Valor não pode ser nulo.")
+    @Positive(message = "Valor do Lançamento não pode ser menor ou igual a zero")
+    private Float valor;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate dataCadastro;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate dataAlteracao;
+
+    @Digits(integer = 4, fraction = 0, message = "O anoOrcamento deve ter exatamente 4 dígitos")
+    private Short anoOrcamento;
+
 }

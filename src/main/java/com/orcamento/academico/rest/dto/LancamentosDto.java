@@ -1,9 +1,15 @@
 package com.orcamento.academico.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class LancamentosDto {
     private Integer id;
     private Byte lancamentoInvalido;
@@ -31,6 +37,5 @@ public class LancamentosDto {
     private LocalDate dataCadastro;
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataAlteracao;
-    @JsonFormat(pattern = "yyyy")
-    private LocalDate anoOrcamento;
+    private Short anoOrcamento;
 }
