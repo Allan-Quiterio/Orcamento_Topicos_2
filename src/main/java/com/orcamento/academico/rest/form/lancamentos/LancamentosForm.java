@@ -11,6 +11,7 @@ public class LancamentosForm {
     @NotNull(message = "O campo 'lancamentoInvalido' não pode estar nulo.")
     private Byte lancamentoInvalido;
 
+    @NotNull(message = "O campo 'numeroLancamento' não pode estar nulo.")
     private Integer numeroLancamento;
 
     @NotNull(message = "A data de Lançamento não pode estar nula.")
@@ -23,22 +24,49 @@ public class LancamentosForm {
     @Size(max = 255)
     private String descricao;
 
+    @NotNull(message = "O campo 'idTipoLancamento' não pode estar nulo.")
     private Integer idTipoLancamento;
+
+    @NotNull(message = "O campo 'idLancamentoPai' não pode estar nulo.")
     private Integer idLancamentoPai;
+
+    @NotNull(message = "O campo 'idUnidade' não pode estar nulo.")
     private Integer idUnidade;
+
+    @NotNull(message = "O campo 'idUnidadeOrcamentaria' não pode estar nulo.")
     private Integer idUnidadeOrcamentaria;
+
+    @NotNull(message = "O campo 'idPrograma' não pode estar nulo.")
     private Integer idPrograma;
+
+    @NotNull(message = "O campo 'idAcao' não pode estar nulo.")
     private Integer idAcao;
+
+    @NotNull(message = "O campo 'idFonteRecurso' não pode estar nulo.")
     private Integer idFonteRecurso;
+
+    @NotNull(message = "O campo 'idGrupoDespesa' não pode estar nulo.")
     private Integer idGrupoDespesa;
+
+    @NotNull(message = "O campo 'idModalidadeAplicacao' não pode estar nulo.")
     private Integer idModalidadeAplicacao;
+
+    @NotNull(message = "O campo 'idElementoDespesa' não pode estar nulo.")
     private Integer idElementoDespesa;
+
+    @NotNull(message = "O campo 'idSolicitante' não pode estar nulo.")
     private Integer idSolicitante;
+
+    @NotNull(message = "O campo 'idObjetivoEstrategico' não pode estar nulo.")
     private Integer idObjetivoEstrategico;
+
+    @NotNull(message = "O campo 'idTipoTransacao' não pode estar nulo.")
     private Integer idTipoTransacao;
 
+    @NotNull(message = "O campo 'ged' não pode estar nulo.")
     private Character ged;
 
+    @NotNull(message = "O campo 'contratado' não pode estar nulo.")
     @Size(max = 255)
     private String contratado;
 
@@ -46,13 +74,18 @@ public class LancamentosForm {
     @Positive(message = "Valor do Lançamento não pode ser menor ou igual a zero")
     private Float valor;
 
+    @NotNull(message = "Valor não pode ser nulo.")
+    @FutureOrPresent(message = "Data de Cadastro deve ser data atual ou futura.")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataCadastro;
 
+    @NotNull(message = "Valor não pode ser nulo.")
+    @FutureOrPresent(message = "Data de Alteracao deve ser data atual ou futura.")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataAlteracao;
 
-    @Digits(integer = 4, fraction = 0, message = "O anoOrcamento deve ter exatamente 4 dígitos")
-    private Short anoOrcamento;
+    @NotNull(message = "Valor não pode ser nulo.")
+    @JsonFormat(pattern = "yyyy")
+    private Integer anoOrcamento;
 
 }

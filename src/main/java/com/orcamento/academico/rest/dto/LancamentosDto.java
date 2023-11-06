@@ -37,5 +37,6 @@ public class LancamentosDto {
     private LocalDate dataCadastro;
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataAlteracao;
-    private Short anoOrcamento;
+    @JsonFormat(pattern = "yyyy")
+    private Integer anoOrcamento;
 }
