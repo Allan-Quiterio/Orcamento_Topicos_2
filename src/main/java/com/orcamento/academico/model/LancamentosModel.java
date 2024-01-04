@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -75,10 +76,10 @@ public class LancamentosModel {
     private Integer idTipoTransacao;
 
     @Column(name = "dataCadastro", nullable = false)
-    private LocalDate dataCadastro;
+    private String dataCadastro;
 
     @Column(name = "dataAlteracao", nullable = false)
-    private LocalDate dataAlteracao;
+    private String dataAlteracao;
 
     @Column(name = "anoOrcamento", nullable = false)
     private Integer anoOrcamento;

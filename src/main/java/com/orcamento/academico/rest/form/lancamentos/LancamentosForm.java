@@ -75,16 +75,6 @@ public class LancamentosForm {
     private Float valor;
 
     @NotNull(message = "Valor não pode ser nulo.")
-    @FutureOrPresent(message = "Data de Cadastro deve ser data atual ou futura.")
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataCadastro;
-
-    @NotNull(message = "Valor não pode ser nulo.")
-    @FutureOrPresent(message = "Data de Alteracao deve ser data atual ou futura.")
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataAlteracao;
-
-    @NotNull(message = "Valor não pode ser nulo.")
     @JsonFormat(pattern = "yyyy")
     private Integer anoOrcamento;
 

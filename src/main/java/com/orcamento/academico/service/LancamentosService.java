@@ -11,10 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Service
 public class LancamentosService {
@@ -52,6 +52,7 @@ public class LancamentosService {
     public LancamentosDto update(LancamentosUpdateForm lancamentosUpdateForm, Integer id) {
         try {
             Optional<LancamentosModel> lancamentosExistente = lancamentosRepository.findById(id);
+            String dataCadastro = lancamentosExistente.get().getDataCadastro();
             if (lancamentosExistente.isPresent()) {
                 LancamentosModel lancamentosAtualizado = lancamentosExistente.get();
                 lancamentosAtualizado.setLancamentoInvalido(lancamentosUpdateForm.getLancamentoInvalido());
@@ -74,8 +75,14 @@ public class LancamentosService {
                 lancamentosAtualizado.setIdObjetivoEstrategico(lancamentosUpdateForm.getIdObjetivoEstrategico());
                 lancamentosAtualizado.setValor(lancamentosUpdateForm.getValor());
                 lancamentosAtualizado.setIdTipoTransacao(lancamentosUpdateForm.getIdTipoTransacao());
-                lancamentosAtualizado.setDataCadastro(lancamentosUpdateForm.getDataCadastro());
-                lancamentosAtualizado.setDataAlteracao(lancamentosUpdateForm.getDataAlteracao());
+                lancamentosAtualizado.setDataCadastro(dataCadastro);
+
+                LocalDateTime currentDateTime = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                        .withZone(ZoneId.of("America/Sao_Paulo"));
+                String formattedDate = currentDateTime.format(formatter);
+
+                lancamentosAtualizado.setDataAlteracao(formattedDate);
                 lancamentosAtualizado.setAnoOrcamento(lancamentosUpdateForm.getAnoOrcamento());
                 lancamentosAtualizado = lancamentosRepository.save(lancamentosAtualizado);
                 return convertLancamentoModelToLancamentoDto(lancamentosAtualizado);
@@ -119,8 +126,14 @@ public class LancamentosService {
         lancamentosModel.setIdObjetivoEstrategico(lancamentosForm.getIdObjetivoEstrategico());
         lancamentosModel.setValor(lancamentosForm.getValor());
         lancamentosModel.setIdTipoTransacao(lancamentosForm.getIdTipoTransacao());
-        lancamentosModel.setDataCadastro(lancamentosForm.getDataCadastro());
-        lancamentosModel.setDataAlteracao(lancamentosForm.getDataAlteracao());
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                .withZone(ZoneId.of("America/Sao_Paulo"));
+        String formattedDate = currentDateTime.format(formatter);
+
+        lancamentosModel.setDataCadastro(formattedDate);
+        lancamentosModel.setDataAlteracao(formattedDate);
         lancamentosModel.setAnoOrcamento(lancamentosForm.getAnoOrcamento());
         return lancamentosModel;
     }

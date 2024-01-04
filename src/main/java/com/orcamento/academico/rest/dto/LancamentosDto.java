@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -33,10 +34,8 @@ public class LancamentosDto {
     private Integer idObjetivoEstrategico;
     private Float valor;
     private Integer idTipoTransacao;
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataCadastro;
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataAlteracao;
+    private String dataCadastro;
+    private String dataAlteracao;
     @JsonFormat(pattern = "yyyy")
     private Integer anoOrcamento;
 }
