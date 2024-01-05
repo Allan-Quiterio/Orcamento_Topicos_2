@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -57,12 +60,19 @@ public class AcaoService {
     public AcaoDto update(AcaoUpdateForm acaoUpdateForm, Long id) {
         try {
             Optional<AcaoModel> acaoExistente = acaoRepository.findById(id);
+            String dataCadastro = acaoExistente.get().getDataCadastro();
             if (acaoExistente.isPresent()) {
                 AcaoModel acaoAtualizado = acaoExistente.get();
                 acaoAtualizado.setNome(acaoUpdateForm.getNome());
                 acaoAtualizado.setCodigo(acaoUpdateForm.getCodigo());
-                acaoAtualizado.setDataCadastro(acaoUpdateForm.getDataCadastro());
-                acaoAtualizado.setDataAlteracao(acaoUpdateForm.getDataAlteracao());
+                acaoAtualizado.setDataCadastro(dataCadastro);
+
+                LocalDateTime currentDateTime = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                        .withZone(ZoneId.of("America/Sao_Paulo"));
+                String formattedDate = currentDateTime.format(formatter);
+
+                acaoAtualizado.setDataAlteracao(formattedDate);
                 acaoAtualizado = acaoRepository.save(acaoAtualizado);
                 return convertAcaoModelToAcaoDto(acaoAtualizado);
             } else {
@@ -87,8 +97,14 @@ public class AcaoService {
         AcaoModel acaoModel = new AcaoModel();
         acaoModel.setNome(acaoForm.getNome());
         acaoModel.setCodigo(acaoForm.getCodigo());
-        acaoModel.setDataCadastro(acaoForm.getDataCadastro());
-        acaoModel.setDataAlteracao(acaoForm.getDataAlteracao());
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                .withZone(ZoneId.of("America/Sao_Paulo"));
+        String formattedDate = currentDateTime.format(formatter);
+
+        acaoModel.setDataCadastro(formattedDate);
+        acaoModel.setDataAlteracao(formattedDate);
         return acaoModel;
     }
 

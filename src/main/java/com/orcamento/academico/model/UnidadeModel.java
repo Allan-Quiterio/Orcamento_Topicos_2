@@ -17,9 +17,9 @@ public class UnidadeModel {
     private String nome;
 
     @Column(name = "dataCadastro", nullable = false)
-    private LocalDate dataCadastro;
+    private String dataCadastro;
 
     @Column(name = "dataAlteracao", nullable = false)
-    private LocalDate dataAlteracao;
+    private String dataAlteracao;
 }
 

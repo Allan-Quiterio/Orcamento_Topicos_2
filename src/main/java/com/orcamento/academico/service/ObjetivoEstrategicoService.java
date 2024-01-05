@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -54,11 +57,18 @@ public class ObjetivoEstrategicoService {
   public ObjetivoEstrategicoDto update(ObjetivoEstrategicoUpdateForm objetivoEstrategicoUpdateForm, long id) {
     try {
       Optional<ObjetivoEstrategicoModel> objetivoEstrategicoExistente = objetivoEstrategicoRepository.findById(id);
+      String dataCadastro = objetivoEstrategicoExistente.get().getDataCadastro();
       if (objetivoEstrategicoExistente.isPresent()) {
         ObjetivoEstrategicoModel objetivoEstrategicoAtualizado = objetivoEstrategicoExistente.get();
         objetivoEstrategicoAtualizado.setNome(objetivoEstrategicoUpdateForm.getNome());
-        objetivoEstrategicoAtualizado.setDataCadastro(objetivoEstrategicoUpdateForm.getDataCadastro());
-        objetivoEstrategicoAtualizado.setDataAlteracao(objetivoEstrategicoUpdateForm.getDataAlteracao());
+        objetivoEstrategicoAtualizado.setDataCadastro(dataCadastro);
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                .withZone(ZoneId.of("America/Sao_Paulo"));
+        String formattedDate = currentDateTime.format(formatter);
+
+        objetivoEstrategicoAtualizado.setDataAlteracao(formattedDate);
         objetivoEstrategicoRepository.save(objetivoEstrategicoAtualizado);
         return convertObjetivoEstrategicoModelToObjetivoEstrategicoDto(objetivoEstrategicoAtualizado);
       } else {
@@ -82,8 +92,14 @@ public class ObjetivoEstrategicoService {
   private ObjetivoEstrategicoModel convertObjetivoEstrategicoFormToObjetivoEstrategicoModel(ObjetivoEstrategicoForm objetivoEstrategicoForm) {
     ObjetivoEstrategicoModel objetivoEstrategicoModel = new ObjetivoEstrategicoModel();
     objetivoEstrategicoModel.setNome(objetivoEstrategicoForm.getNome());
-    objetivoEstrategicoModel.setDataCadastro(objetivoEstrategicoForm.getDataCadastro());
-    objetivoEstrategicoModel.setDataAlteracao(objetivoEstrategicoForm.getDataAlteracao());
+
+    LocalDateTime currentDateTime = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+            .withZone(ZoneId.of("America/Sao_Paulo"));
+    String formattedDate = currentDateTime.format(formatter);
+
+    objetivoEstrategicoModel.setDataCadastro(formattedDate);
+    objetivoEstrategicoModel.setDataAlteracao(formattedDate);
     return objetivoEstrategicoModel;
   }
 

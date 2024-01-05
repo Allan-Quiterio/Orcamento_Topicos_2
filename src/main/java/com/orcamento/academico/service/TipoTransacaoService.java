@@ -12,6 +12,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import com.orcamento.academico.service.exceptions.ObjectNotFoundException;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -54,11 +57,18 @@ public class TipoTransacaoService {
   public TipoTransacaoDto update(TipoTransacaoUpdateForm tipoTransacaoUpdateForm, long id) {
     try {
       Optional<TipoTransacaoModel> tipoTransacaoExistente = tipoTransacaoRepository.findById(id);
+      String dataCadastro = tipoTransacaoExistente.get().getDataCadastro();
       if (tipoTransacaoExistente.isPresent()) {
         TipoTransacaoModel tipoTransacaoAtualizado = tipoTransacaoExistente.get();
         tipoTransacaoAtualizado.setNome(tipoTransacaoUpdateForm.getNome());
-        tipoTransacaoAtualizado.setDataCadastro(tipoTransacaoUpdateForm.getDataCadastro());
-        tipoTransacaoAtualizado.setDataAlteracao(tipoTransacaoUpdateForm.getDataAlteracao());
+        tipoTransacaoAtualizado.setDataCadastro(dataCadastro);
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                .withZone(ZoneId.of("America/Sao_Paulo"));
+        String formattedDate = currentDateTime.format(formatter);
+
+        tipoTransacaoAtualizado.setDataAlteracao(formattedDate);
         tipoTransacaoRepository.save(tipoTransacaoAtualizado);
         return convertTipoTransacaoModelToTipoTransacaoDto(tipoTransacaoAtualizado);
       } else {
@@ -82,8 +92,14 @@ public class TipoTransacaoService {
   private TipoTransacaoModel convertTipoTransacaoFormToTipoTransacaoModel(TipoTransacaoForm tipoTransacaoForm) {
     TipoTransacaoModel tipoTransacaoModel = new TipoTransacaoModel();
     tipoTransacaoModel.setNome(tipoTransacaoForm.getNome());
-    tipoTransacaoModel.setDataCadastro(tipoTransacaoForm.getDataCadastro());
-    tipoTransacaoModel.setDataAlteracao(tipoTransacaoForm.getDataAlteracao());
+
+    LocalDateTime currentDateTime = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+            .withZone(ZoneId.of("America/Sao_Paulo"));
+    String formattedDate = currentDateTime.format(formatter);
+
+    tipoTransacaoModel.setDataCadastro(formattedDate);
+    tipoTransacaoModel.setDataAlteracao(formattedDate);
     return tipoTransacaoModel;
   }
 

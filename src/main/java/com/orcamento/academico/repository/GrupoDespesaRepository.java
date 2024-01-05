@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface GrupoDespesaRepository extends JpaRepository<GrupoDespesaModel, Long> {
-    Optional<GrupoDespesaModel> findByCodigo(Float codigo);
+    Optional<GrupoDespesaModel> findByCodigo(Integer codigo);
 
     List<GrupoDespesaModel> findByOrderByCodigoDesc();
 

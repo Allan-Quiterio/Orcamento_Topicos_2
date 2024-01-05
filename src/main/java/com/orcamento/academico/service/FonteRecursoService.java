@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 import com.orcamento.academico.service.exceptions.ObjectNotFoundException;
 
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -58,12 +61,19 @@ public class FonteRecursoService {
     public FonteRecursoDto update(FonteRecursoUpdateForm fonteRecursoUpdateForm, long id) {
         try {
             Optional<FonteRecursoModel> fonteRecursoExistente = fonteRecursoRepository.findById(id);
+            String dataCadastro = fonteRecursoExistente.get().getDataCadastro();
             if (fonteRecursoExistente.isPresent()) {
                 FonteRecursoModel fonteRecursoAtualizado = fonteRecursoExistente.get();
                 fonteRecursoAtualizado.setNome(fonteRecursoUpdateForm.getNome());
                 fonteRecursoAtualizado.setCodigo(fonteRecursoUpdateForm.getCodigo());
-                fonteRecursoAtualizado.setDataCadastro(fonteRecursoUpdateForm.getDataCadastro());
-                fonteRecursoAtualizado.setDataAlteracao(fonteRecursoUpdateForm.getDataAlteracao());
+                fonteRecursoAtualizado.setDataCadastro(dataCadastro);
+
+                LocalDateTime currentDateTime = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                        .withZone(ZoneId.of("America/Sao_Paulo"));
+                String formattedDate = currentDateTime.format(formatter);
+
+                fonteRecursoAtualizado.setDataAlteracao(formattedDate);
                 fonteRecursoRepository.save(fonteRecursoAtualizado);
                 return convertFonteRecursoModelToFonteRecursoDto(fonteRecursoAtualizado);
             } else {
@@ -88,8 +98,14 @@ public class FonteRecursoService {
         FonteRecursoModel fonteRecursoModel = new FonteRecursoModel();
         fonteRecursoModel.setNome(fonteRecursoForm.getNome());
         fonteRecursoModel.setCodigo(fonteRecursoForm.getCodigo());
-        fonteRecursoModel.setDataCadastro(fonteRecursoForm.getDataCadastro());
-        fonteRecursoModel.setDataAlteracao(fonteRecursoForm.getDataAlteracao());
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                .withZone(ZoneId.of("America/Sao_Paulo"));
+        String formattedDate = currentDateTime.format(formatter);
+
+        fonteRecursoModel.setDataCadastro(formattedDate);
+        fonteRecursoModel.setDataAlteracao(formattedDate);
         return fonteRecursoModel;
     }
 

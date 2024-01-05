@@ -14,14 +14,14 @@ public class GrupoDespesaModel {
     private Long id;
 
     @Column(name = "codigo", nullable = false, unique = true)
-    private Float codigo;
+    private Integer codigo;
 
     @Column(name = "nome", length = 255, nullable = false)
     private String nome;
 
     @Column(name = "dataCadastro", nullable = false)
-    private LocalDate dataCadastro;
+    private String dataCadastro;
 
     @Column(name = "dataAlteracao", nullable = false)
-    private LocalDate dataAlteracao;
+    private String dataAlteracao;
 }

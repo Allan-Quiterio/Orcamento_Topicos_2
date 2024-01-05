@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -57,12 +60,19 @@ public class UnidadeOrcamentariaService {
     public UnidadeOrcamentariaDto update(UnidadeOrcamentariaUpdateForm unidadeOrcamentariaUpdateForm, Long id) {
         try {
             Optional<UnidadeOrcamentariaModel> unidadeOrcamentariaExistente = unidadeOrcamentariaRepository.findById(id);
+            String dataCadastro = unidadeOrcamentariaExistente.get().getDataCadastro();
             if (unidadeOrcamentariaExistente.isPresent()) {
                 UnidadeOrcamentariaModel unidadeOrcamentariaAtualizado = unidadeOrcamentariaExistente.get();
                 unidadeOrcamentariaAtualizado.setNome(unidadeOrcamentariaUpdateForm.getNome());
                 unidadeOrcamentariaAtualizado.setCodigo(unidadeOrcamentariaUpdateForm.getCodigo());
-                unidadeOrcamentariaAtualizado.setDataCadastro(unidadeOrcamentariaUpdateForm.getDataCadastro());
-                unidadeOrcamentariaAtualizado.setDataAlteracao(unidadeOrcamentariaUpdateForm.getDataAlteracao());
+                unidadeOrcamentariaAtualizado.setDataCadastro(dataCadastro);
+
+                LocalDateTime currentDateTime = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                        .withZone(ZoneId.of("America/Sao_Paulo"));
+                String formattedDate = currentDateTime.format(formatter);
+
+                unidadeOrcamentariaAtualizado.setDataAlteracao(formattedDate);
                 unidadeOrcamentariaAtualizado = unidadeOrcamentariaRepository.save(unidadeOrcamentariaAtualizado);
                 return convertUnidadeOrcamentariaModelToUnidadeOrcamentariaDto(unidadeOrcamentariaAtualizado);
             } else {
@@ -87,8 +97,14 @@ public class UnidadeOrcamentariaService {
         UnidadeOrcamentariaModel unidadeOrcamentariaModel = new UnidadeOrcamentariaModel();
         unidadeOrcamentariaModel.setNome(unidadeOrcamentariaForm.getNome());
         unidadeOrcamentariaModel.setCodigo(unidadeOrcamentariaForm.getCodigo());
-        unidadeOrcamentariaModel.setDataCadastro(unidadeOrcamentariaForm.getDataCadastro());
-        unidadeOrcamentariaModel.setDataAlteracao(unidadeOrcamentariaForm.getDataAlteracao());
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                .withZone(ZoneId.of("America/Sao_Paulo"));
+        String formattedDate = currentDateTime.format(formatter);
+
+        unidadeOrcamentariaModel.setDataCadastro(formattedDate);
+        unidadeOrcamentariaModel.setDataAlteracao(formattedDate);
         return unidadeOrcamentariaModel;
     }
 

@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -57,12 +60,19 @@ public class ProgramaService {
     public ProgramaDto update(ProgramaUpdateForm programaUpdateForm, Long id) {
         try {
             Optional<ProgramaModel> programaExistente = programaRepository.findById(id);
+            String dataCadastro = programaExistente.get().getDataCadastro();
             if (programaExistente.isPresent()) {
                 ProgramaModel programaAtualizado = programaExistente.get();
                 programaAtualizado.setNome(programaUpdateForm.getNome());
                 programaAtualizado.setCodigo(programaUpdateForm.getCodigo());
-                programaAtualizado.setDataCadastro(programaUpdateForm.getDataCadastro());
-                programaAtualizado.setDataAlteracao(programaUpdateForm.getDataAlteracao());
+                programaAtualizado.setDataCadastro(dataCadastro);
+
+                LocalDateTime currentDateTime = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                        .withZone(ZoneId.of("America/Sao_Paulo"));
+                String formattedDate = currentDateTime.format(formatter);
+
+                programaAtualizado.setDataAlteracao(formattedDate);
                 programaAtualizado = programaRepository.save(programaAtualizado);
                 return convertProgramaModelToProgramaDto(programaAtualizado);
             } else {
@@ -87,8 +97,14 @@ public class ProgramaService {
         ProgramaModel programaModel = new ProgramaModel();
         programaModel.setNome(programaForm.getNome());
         programaModel.setCodigo(programaForm.getCodigo());
-        programaModel.setDataCadastro(programaForm.getDataCadastro());
-        programaModel.setDataAlteracao(programaForm.getDataAlteracao());
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                .withZone(ZoneId.of("America/Sao_Paulo"));
+        String formattedDate = currentDateTime.format(formatter);
+
+        programaModel.setDataCadastro(formattedDate);
+        programaModel.setDataAlteracao(formattedDate);
         return programaModel;
     }
 

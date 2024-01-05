@@ -12,10 +12,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ModalidadeAplicacaoDto {
   private Long id;
-  private Float codigo;
+  private Integer codigo;
   private String nome;
-  @JsonFormat(pattern = "dd/MM/yyyy")
-  private LocalDate dataAlteracao;
-  @JsonFormat(pattern = "dd/MM/yyyy")
-  private LocalDate dataCadastro;
+  private String dataAlteracao;
+  private String dataCadastro;
 }

@@ -12,6 +12,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import com.orcamento.academico.service.exceptions.ObjectNotFoundException;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -58,12 +61,19 @@ public class GrupoDespesaService {
   public GrupoDespesaDto update(GrupoDespesaUpdateForm grupoDespesaUpdateForm, long id) {
     try {
       Optional<GrupoDespesaModel> grupoDespesaExistente = grupoDespesaRepository.findById(id);
+      String dataCadastro = grupoDespesaExistente.get().getDataCadastro();
       if (grupoDespesaExistente.isPresent()) {
         GrupoDespesaModel grupoDespesaAtualizado = grupoDespesaExistente.get();
         grupoDespesaAtualizado.setNome(grupoDespesaUpdateForm.getNome());
         grupoDespesaAtualizado.setCodigo(grupoDespesaUpdateForm.getCodigo());
-        grupoDespesaAtualizado.setDataCadastro(grupoDespesaUpdateForm.getDataCadastro());
-        grupoDespesaAtualizado.setDataAlteracao(grupoDespesaUpdateForm.getDataAlteracao());
+        grupoDespesaAtualizado.setDataCadastro(dataCadastro);
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                .withZone(ZoneId.of("America/Sao_Paulo"));
+        String formattedDate = currentDateTime.format(formatter);
+
+        grupoDespesaAtualizado.setDataAlteracao(formattedDate);
         grupoDespesaRepository.save(grupoDespesaAtualizado);
         return convertGrupoDespesaModelToGrupoDespesaDto(grupoDespesaAtualizado);
       } else {
@@ -88,8 +98,14 @@ public class GrupoDespesaService {
     GrupoDespesaModel grupoDespesaModel = new GrupoDespesaModel();
     grupoDespesaModel.setNome(grupoDespesaForm.getNome());
     grupoDespesaModel.setCodigo(grupoDespesaForm.getCodigo());
-    grupoDespesaModel.setDataCadastro(grupoDespesaForm.getDataCadastro());
-    grupoDespesaModel.setDataAlteracao(grupoDespesaForm.getDataAlteracao());
+
+    LocalDateTime currentDateTime = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+            .withZone(ZoneId.of("America/Sao_Paulo"));
+    String formattedDate = currentDateTime.format(formatter);
+
+    grupoDespesaModel.setDataCadastro(formattedDate);
+    grupoDespesaModel.setDataAlteracao(formattedDate);
     return grupoDespesaModel;
   }
 

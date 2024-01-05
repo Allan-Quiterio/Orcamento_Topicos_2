@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -54,11 +57,18 @@ public class TipoLancamentoService {
   public TipoLancamentoDto update(TipoLancamentoUpdateForm tipoLancamentoUpdateForm, long id) {
     try {
       Optional<TipoLancamentoModel> tipoLancamentoExistente = tipoLancamentoRepository.findById(id);
+      String dataCadastro = tipoLancamentoExistente.get().getDataCadastro();
       if (tipoLancamentoExistente.isPresent()) {
         TipoLancamentoModel tipoLancamentoAtualizado = tipoLancamentoExistente.get();
         tipoLancamentoAtualizado.setNome(tipoLancamentoUpdateForm.getNome());
-        tipoLancamentoAtualizado.setDataCadastro(tipoLancamentoUpdateForm.getDataCadastro());
-        tipoLancamentoAtualizado.setDataAlteracao(tipoLancamentoUpdateForm.getDataAlteracao());
+        tipoLancamentoAtualizado.setDataCadastro(dataCadastro);
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                .withZone(ZoneId.of("America/Sao_Paulo"));
+        String formattedDate = currentDateTime.format(formatter);
+
+        tipoLancamentoAtualizado.setDataAlteracao(formattedDate);
         tipoLancamentoRepository.save(tipoLancamentoAtualizado);
         return convertTipoLancamentoModelToTipoLancamentoDto(tipoLancamentoAtualizado);
       } else {
@@ -82,8 +92,14 @@ public class TipoLancamentoService {
   private TipoLancamentoModel convertTipoLancamentoFormToTipoLancamentoModel(TipoLancamentoForm tipoLancamentoForm) {
     TipoLancamentoModel tipoLancamentoModel = new TipoLancamentoModel();
     tipoLancamentoModel.setNome(tipoLancamentoForm.getNome());
-    tipoLancamentoModel.setDataCadastro(tipoLancamentoForm.getDataCadastro());
-    tipoLancamentoModel.setDataAlteracao(tipoLancamentoForm.getDataAlteracao());
+
+    LocalDateTime currentDateTime = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+            .withZone(ZoneId.of("America/Sao_Paulo"));
+    String formattedDate = currentDateTime.format(formatter);
+
+    tipoLancamentoModel.setDataCadastro(formattedDate);
+    tipoLancamentoModel.setDataAlteracao(formattedDate);
     return tipoLancamentoModel;
   }
 

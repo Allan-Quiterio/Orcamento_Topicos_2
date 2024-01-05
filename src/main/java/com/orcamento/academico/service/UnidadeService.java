@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -54,11 +57,18 @@ public class UnidadeService {
   public UnidadeDto update(UnidadeUpdateForm unidadeUpdateForm, long id) {
     try {
       Optional<UnidadeModel> unidadeExistente = unidadeRepository.findById(id);
+      String dataCadastro = unidadeExistente.get().getDataCadastro();
       if (unidadeExistente.isPresent()) {
         UnidadeModel unidadeAtualizado = unidadeExistente.get();
         unidadeAtualizado.setNome(unidadeUpdateForm.getNome());
-        unidadeAtualizado.setDataCadastro(unidadeUpdateForm.getDataCadastro());
-        unidadeAtualizado.setDataAlteracao(unidadeUpdateForm.getDataAlteracao());
+        unidadeAtualizado.setDataCadastro(dataCadastro);
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                .withZone(ZoneId.of("America/Sao_Paulo"));
+        String formattedDate = currentDateTime.format(formatter);
+
+        unidadeAtualizado.setDataAlteracao(formattedDate);
         unidadeRepository.save(unidadeAtualizado);
         return convertUnidadeModelToUnidadeDto(unidadeAtualizado);
       } else {
@@ -82,8 +92,14 @@ public class UnidadeService {
   private UnidadeModel convertUnidadeFormToUnidadeModel(UnidadeForm unidadeForm) {
     UnidadeModel unidadeModel = new UnidadeModel();
     unidadeModel.setNome(unidadeForm.getNome());
-    unidadeModel.setDataCadastro(unidadeForm.getDataCadastro());
-    unidadeModel.setDataAlteracao(unidadeForm.getDataAlteracao());
+
+    LocalDateTime currentDateTime = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+            .withZone(ZoneId.of("America/Sao_Paulo"));
+    String formattedDate = currentDateTime.format(formatter);
+
+    unidadeModel.setDataCadastro(formattedDate);
+    unidadeModel.setDataAlteracao(formattedDate);
     return unidadeModel;
   }
 

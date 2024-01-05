@@ -12,6 +12,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import com.orcamento.academico.service.exceptions.ObjectNotFoundException;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -60,12 +63,19 @@ public class ModalidadeAplicacaoService {
   public ModalidadeAplicacaoDto update(ModalidadeAplicacaoUpdateForm modalidadeAplicacaoUpdateForm, long id) {
     try {
       Optional<ModalidadeAplicacaoModel> modalidadeAplicacaoExistente = modalidadeAplicacaoRepository.findById(id);
+      String dataCadastro = modalidadeAplicacaoExistente.get().getDataCadastro();
       if (modalidadeAplicacaoExistente.isPresent()) {
         ModalidadeAplicacaoModel modalidadeAplicacaoAtualizado = modalidadeAplicacaoExistente.get();
         modalidadeAplicacaoAtualizado.setNome(modalidadeAplicacaoUpdateForm.getNome());
         modalidadeAplicacaoAtualizado.setCodigo(modalidadeAplicacaoUpdateForm.getCodigo());
-        modalidadeAplicacaoAtualizado.setDataCadastro(modalidadeAplicacaoUpdateForm.getDataCadastro());
-        modalidadeAplicacaoAtualizado.setDataAlteracao(modalidadeAplicacaoUpdateForm.getDataAlteracao());
+        modalidadeAplicacaoAtualizado.setDataCadastro(dataCadastro);
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                .withZone(ZoneId.of("America/Sao_Paulo"));
+        String formattedDate = currentDateTime.format(formatter);
+
+        modalidadeAplicacaoAtualizado.setDataAlteracao(formattedDate);
         modalidadeAplicacaoRepository.save(modalidadeAplicacaoAtualizado);
         return convertModalidadeAplicacaoModelToModalidadeAplicacaoDto(modalidadeAplicacaoAtualizado);
       } else {
@@ -91,8 +101,14 @@ public class ModalidadeAplicacaoService {
     ModalidadeAplicacaoModel modalidadeAplicacaoModel = new ModalidadeAplicacaoModel();
     modalidadeAplicacaoModel.setNome(modalidadeAplicacaoForm.getNome());
     modalidadeAplicacaoModel.setCodigo(modalidadeAplicacaoForm.getCodigo());
-    modalidadeAplicacaoModel.setDataCadastro(modalidadeAplicacaoForm.getDataCadastro());
-    modalidadeAplicacaoModel.setDataAlteracao(modalidadeAplicacaoForm.getDataAlteracao());
+
+    LocalDateTime currentDateTime = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+            .withZone(ZoneId.of("America/Sao_Paulo"));
+    String formattedDate = currentDateTime.format(formatter);
+
+    modalidadeAplicacaoModel.setDataCadastro(formattedDate);
+    modalidadeAplicacaoModel.setDataAlteracao(formattedDate);
     return modalidadeAplicacaoModel;
   }
 

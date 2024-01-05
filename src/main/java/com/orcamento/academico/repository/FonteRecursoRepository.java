@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface FonteRecursoRepository extends JpaRepository<FonteRecursoModel, Long> {
-    Optional<FonteRecursoModel> findByCodigo(Float codigo);
+    Optional<FonteRecursoModel> findByCodigo(Integer codigo);
 
     List<FonteRecursoModel> findByOrderByCodigoDesc();
 

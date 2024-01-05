@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -54,11 +57,18 @@ public class SolicitanteService {
   public SolicitanteDto update(SolicitanteUpdateForm solicitanteUpdateForm, long id) {
     try {
       Optional<SolicitanteModel> solicitanteExistente = solicitanteRepository.findById(id);
+      String dataCadastro = solicitanteExistente.get().getDataCadastro();
       if (solicitanteExistente.isPresent()) {
         SolicitanteModel solicitanteAtualizado = solicitanteExistente.get();
         solicitanteAtualizado.setNome(solicitanteUpdateForm.getNome());
-        solicitanteAtualizado.setDataCadastro(solicitanteUpdateForm.getDataCadastro());
-        solicitanteAtualizado.setDataAlteracao(solicitanteUpdateForm.getDataAlteracao());
+        solicitanteAtualizado.setDataCadastro(dataCadastro);
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                .withZone(ZoneId.of("America/Sao_Paulo"));
+        String formattedDate = currentDateTime.format(formatter);
+
+        solicitanteAtualizado.setDataAlteracao(formattedDate);
         solicitanteRepository.save(solicitanteAtualizado);
         return convertSolicitanteModelToSolicitanteDto(solicitanteAtualizado);
       } else {
@@ -82,8 +92,14 @@ public class SolicitanteService {
   private SolicitanteModel convertSolicitanteFormToSolicitanteModel(SolicitanteForm solicitanteForm) {
     SolicitanteModel solicitanteModel = new SolicitanteModel();
     solicitanteModel.setNome(solicitanteForm.getNome());
-    solicitanteModel.setDataCadastro(solicitanteForm.getDataCadastro());
-    solicitanteModel.setDataAlteracao(solicitanteForm.getDataAlteracao());
+
+    LocalDateTime currentDateTime = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+            .withZone(ZoneId.of("America/Sao_Paulo"));
+    String formattedDate = currentDateTime.format(formatter);
+
+    solicitanteModel.setDataCadastro(formattedDate);
+    solicitanteModel.setDataAlteracao(formattedDate);
     return solicitanteModel;
   }
 

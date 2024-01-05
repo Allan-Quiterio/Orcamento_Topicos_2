@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -57,12 +60,19 @@ public class ElementoDespesaService {
     public ElementoDespesaDto update(ElementoDespesaUpdateForm elementoDespesaUpdateForm, Long id) {
         try {
             Optional<ElementoDespesaModel> elementoDespesaExistente = elementoDespesaRepository.findById(id);
+            String dataCadastro = elementoDespesaExistente.get().getDataCadastro();
             if (elementoDespesaExistente.isPresent()) {
                 ElementoDespesaModel elementoDespesaAtualizado = elementoDespesaExistente.get();
                 elementoDespesaAtualizado.setNome(elementoDespesaUpdateForm.getNome());
                 elementoDespesaAtualizado.setCodigo(elementoDespesaUpdateForm.getCodigo());
-                elementoDespesaAtualizado.setDataCadastro(elementoDespesaUpdateForm.getDataCadastro());
-                elementoDespesaAtualizado.setDataAlteracao(elementoDespesaUpdateForm.getDataAlteracao());
+                elementoDespesaAtualizado.setDataCadastro(dataCadastro);
+
+                LocalDateTime currentDateTime = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                        .withZone(ZoneId.of("America/Sao_Paulo"));
+                String formattedDate = currentDateTime.format(formatter);
+
+                elementoDespesaAtualizado.setDataAlteracao(formattedDate);
                 elementoDespesaAtualizado = elementoDespesaRepository.save(elementoDespesaAtualizado);
                 return convertElementoDespesaModelToElementoDespesaDto(elementoDespesaAtualizado);
             } else {
@@ -87,8 +97,14 @@ public class ElementoDespesaService {
         ElementoDespesaModel elementoDespesaModel = new ElementoDespesaModel();
         elementoDespesaModel.setNome(elementoDespesaForm.getNome());
         elementoDespesaModel.setCodigo(elementoDespesaForm.getCodigo());
-        elementoDespesaModel.setDataCadastro(elementoDespesaForm.getDataCadastro());
-        elementoDespesaModel.setDataAlteracao(elementoDespesaForm.getDataAlteracao());
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                .withZone(ZoneId.of("America/Sao_Paulo"));
+        String formattedDate = currentDateTime.format(formatter);
+
+        elementoDespesaModel.setDataCadastro(formattedDate);
+        elementoDespesaModel.setDataAlteracao(formattedDate);
         return elementoDespesaModel;
     }
 

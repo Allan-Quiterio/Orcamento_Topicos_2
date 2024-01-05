@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/unidadeOrcamentaria")
+    @RequestMapping("/unidadeOrcamentaria")
 public class UnidadeOrcamentariaController {
     @Autowired
     private UnidadeOrcamentariaService unidadeOrcamentariaService;

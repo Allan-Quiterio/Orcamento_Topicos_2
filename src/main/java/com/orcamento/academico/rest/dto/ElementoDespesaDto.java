@@ -14,8 +14,6 @@ public class ElementoDespesaDto {
     private Long id;
     private Integer codigo;
     private String nome;
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataCadastro;
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataAlteracao;
+    private String dataCadastro;
+    private String dataAlteracao;
 }

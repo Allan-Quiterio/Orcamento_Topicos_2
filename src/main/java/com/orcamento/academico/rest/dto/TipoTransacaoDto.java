@@ -13,8 +13,6 @@ import java.time.LocalDate;
 public class TipoTransacaoDto {
   private Long id;
   private String nome;
-  @JsonFormat(pattern = "dd/MM/yyyy")
-  private LocalDate dataAlteracao;
-  @JsonFormat(pattern = "dd/MM/yyyy")
-  private LocalDate dataCadastro;
+  private String dataAlteracao;
+  private String dataCadastro;
 }
