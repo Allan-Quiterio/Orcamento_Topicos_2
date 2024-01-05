@@ -6,6 +6,7 @@ import com.orcamento.academico.rest.dto.LancamentosDto;
 import com.orcamento.academico.rest.form.lancamentos.LancamentosForm;
 import com.orcamento.academico.rest.form.lancamentos.LancamentosUpdateForm;
 import com.orcamento.academico.service.exceptions.DataIntegrityException;
+import com.orcamento.academico.service.exceptions.Exception;
 import com.orcamento.academico.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -29,7 +30,7 @@ public class LancamentosService {
             }
             throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + LancamentosModel.class.getName());
         } catch (NoSuchElementException e) {
-            throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + LancamentosModel.class.getName());
+            throw new Exception("Ocorreu um erro interno ao processar a solicitação");
         }
     }
 

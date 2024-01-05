@@ -6,6 +6,7 @@ import com.orcamento.academico.rest.dto.TipoTransacaoDto;
 import com.orcamento.academico.rest.form.tipoTransacao.TipoTransacaoForm;
 import com.orcamento.academico.rest.form.tipoTransacao.TipoTransacaoUpdateForm;
 import com.orcamento.academico.service.exceptions.DataIntegrityException;
+import com.orcamento.academico.service.exceptions.Exception;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -31,8 +32,7 @@ public class TipoTransacaoService {
       throw new ObjectNotFoundException(
           "Objeto não encontrado! Id: " + id + ", Tipo: " + TipoTransacaoModel.class.getName());
     } catch (NoSuchElementException e) {
-      throw new ObjectNotFoundException(
-          "Objeto não encontrado! Id: " + id + ", Tipo: " + TipoTransacaoModel.class.getName());
+      throw new Exception("Ocorreu um erro interno ao processar a solicitação");
     }
   }
 

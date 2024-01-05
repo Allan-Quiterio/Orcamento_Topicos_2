@@ -6,6 +6,7 @@ import com.orcamento.academico.rest.dto.ObjetivoEstrategicoDto;
 import com.orcamento.academico.rest.form.objetivoEstrategico.ObjetivoEstrategicoForm;
 import com.orcamento.academico.rest.form.objetivoEstrategico.ObjetivoEstrategicoUpdateForm;
 import com.orcamento.academico.service.exceptions.DataIntegrityException;
+import com.orcamento.academico.service.exceptions.Exception;
 import com.orcamento.academico.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -31,8 +32,7 @@ public class ObjetivoEstrategicoService {
       throw new ObjectNotFoundException(
           "Objeto não encontrado! Id: " + id + ", Tipo: " + ObjetivoEstrategicoModel.class.getName());
     } catch (NoSuchElementException e) {
-      throw new ObjectNotFoundException(
-          "Objeto não encontrado! Id: " + id + ", Tipo: " + ObjetivoEstrategicoModel.class.getName());
+      throw new Exception("Ocorreu um erro interno ao processar a solicitação");
     }
   }
 

@@ -6,6 +6,7 @@ import com.orcamento.academico.rest.dto.UnidadeOrcamentariaDto;
 import com.orcamento.academico.rest.form.unidadeOrcamentaria.UnidadeOrcamentariaForm;
 import com.orcamento.academico.rest.form.unidadeOrcamentaria.UnidadeOrcamentariaUpdateForm;
 import com.orcamento.academico.service.exceptions.DataIntegrityException;
+import com.orcamento.academico.service.exceptions.Exception;
 import com.orcamento.academico.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -30,7 +31,7 @@ public class UnidadeOrcamentariaService {
             }
             throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + UnidadeOrcamentariaModel.class.getName());
         } catch (NoSuchElementException e) {
-            throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + UnidadeOrcamentariaModel.class.getName());
+            throw new Exception("Ocorreu um erro interno ao processar a solicitação");
         }
     }
 

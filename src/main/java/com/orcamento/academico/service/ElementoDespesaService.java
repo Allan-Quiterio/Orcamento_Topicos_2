@@ -6,6 +6,7 @@ import com.orcamento.academico.rest.dto.ElementoDespesaDto;
 import com.orcamento.academico.rest.form.elementoDespesa.ElementoDespesaForm;
 import com.orcamento.academico.rest.form.elementoDespesa.ElementoDespesaUpdateForm;
 import com.orcamento.academico.service.exceptions.DataIntegrityException;
+import com.orcamento.academico.service.exceptions.Exception;
 import com.orcamento.academico.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -30,7 +31,7 @@ public class ElementoDespesaService {
             }
             throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + ElementoDespesaModel.class.getName());
         } catch (NoSuchElementException e) {
-            throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + ElementoDespesaModel.class.getName());
+            throw new Exception("Ocorreu um erro interno ao processar a solicitação");
         }
     }
 

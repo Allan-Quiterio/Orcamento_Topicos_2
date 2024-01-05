@@ -6,6 +6,7 @@ import com.orcamento.academico.rest.dto.ProgramaDto;
 import com.orcamento.academico.rest.form.programa.ProgramaForm;
 import com.orcamento.academico.rest.form.programa.ProgramaUpdateForm;
 import com.orcamento.academico.service.exceptions.DataIntegrityException;
+import com.orcamento.academico.service.exceptions.Exception;
 import com.orcamento.academico.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -49,7 +50,7 @@ public class ProgramaService {
             programaNovo = programaRepository.save(programaNovo);
             return convertProgramaModelToProgramaDto(programaNovo);
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Campo(s) obrigatório(s) do Programa não foi(foram) preenchido(s).");
+            throw new Exception("Ocorreu um erro interno ao processar a solicitação");
         }
     }
 

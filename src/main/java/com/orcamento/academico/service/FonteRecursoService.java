@@ -6,6 +6,7 @@ import com.orcamento.academico.rest.dto.FonteRecursoDto;
 import com.orcamento.academico.rest.form.fonteRecurso.FonteRecursoForm;
 import com.orcamento.academico.rest.form.fonteRecurso.FonteRecursoUpdateForm;
 import com.orcamento.academico.service.exceptions.DataIntegrityException;
+import com.orcamento.academico.service.exceptions.Exception;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,7 @@ public class FonteRecursoService {
             }
             throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + FonteRecursoModel.class.getName());
         } catch (NoSuchElementException e) {
-            throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + FonteRecursoModel.class.getName());
+            throw new Exception("Ocorreu um erro interno ao processar a solicitação");
         }
     }
 
