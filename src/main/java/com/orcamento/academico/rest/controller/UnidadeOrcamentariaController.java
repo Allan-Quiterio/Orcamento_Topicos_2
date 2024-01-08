@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-    @RequestMapping("/unidadeOrcamentaria")
+@CrossOrigin(origins = "*")
+@RequestMapping("/unidadeOrcamentaria")
 public class UnidadeOrcamentariaController {
     @Autowired
     private UnidadeOrcamentariaService unidadeOrcamentariaService;
