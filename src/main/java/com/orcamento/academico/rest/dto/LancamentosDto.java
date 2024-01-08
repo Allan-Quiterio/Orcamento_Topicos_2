@@ -29,7 +29,7 @@ public class LancamentosDto {
     private Integer idModalidadeAplicacao;
     private Integer idElementoDespesa;
     private Integer idSolicitante;
-    private Character ged;
+    private String ged;
     private String contratado;
     private Integer idObjetivoEstrategico;
     private Float valor;

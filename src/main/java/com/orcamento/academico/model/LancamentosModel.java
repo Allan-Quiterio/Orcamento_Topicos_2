@@ -60,7 +60,7 @@ public class LancamentosModel {
     private Integer idSolicitante;
 
     @Column(name = "ged", length = 100, nullable = false)
-    private Character ged;
+    private String ged;
 
     @Column(name = "contratado", length = 255, nullable = false)
     private String contratado;

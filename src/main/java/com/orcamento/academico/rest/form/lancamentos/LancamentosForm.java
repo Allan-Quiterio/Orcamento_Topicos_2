@@ -64,7 +64,7 @@ public class LancamentosForm {
     private Integer idTipoTransacao;
 
     @NotNull(message = "O campo 'ged' não pode estar nulo.")
-    private Character ged;
+    private String ged;
 
     @NotNull(message = "O campo 'contratado' não pode estar nulo.")
     @Size(max = 255)

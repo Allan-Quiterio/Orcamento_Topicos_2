@@ -15,7 +15,6 @@ public class LancamentosUpdateForm {
     private Integer numeroLancamento;
 
     @NotNull(message = "A data de Lançamento não pode estar nula.")
-    @FutureOrPresent(message = "Data de Lançamento deve ser data atual ou futura.")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataLancamento;
 
@@ -64,7 +63,7 @@ public class LancamentosUpdateForm {
     private Integer idTipoTransacao;
 
     @NotNull(message = "O campo 'ged' não pode estar nulo.")
-    private Character ged;
+    private String ged;
 
     @NotNull(message = "O campo 'contratado' não pode estar nulo.")
     @Size(max = 255)
