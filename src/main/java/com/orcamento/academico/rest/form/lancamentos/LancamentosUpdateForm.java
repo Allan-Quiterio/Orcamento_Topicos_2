@@ -26,7 +26,6 @@ public class LancamentosUpdateForm {
     @NotNull(message = "O campo 'idTipoLancamento' não pode estar nulo.")
     private Integer idTipoLancamento;
 
-    @NotNull(message = "O campo 'idLancamentoPai' não pode estar nulo.")
     private Integer idLancamentoPai;
 
     @NotNull(message = "O campo 'idUnidade' não pode estar nulo.")

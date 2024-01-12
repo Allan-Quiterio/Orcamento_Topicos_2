@@ -109,7 +109,7 @@ public class LancamentosService {
         LancamentosModel lancamentosModel = new LancamentosModel();
         lancamentosModel.setLancamentoInvalido(lancamentosForm.getLancamentoInvalido());
         lancamentosModel.setNumeroLancamento(lancamentosForm.getNumeroLancamento());
-        lancamentosModel.setIdTipoLancamento(lancamentosForm.getIdLancamentoPai());
+        lancamentosModel.setIdTipoLancamento(lancamentosForm.getIdTipoLancamento());
         lancamentosModel.setDataLancamento(lancamentosForm.getDataLancamento());
         lancamentosModel.setIdLancamentoPai(lancamentosForm.getIdLancamentoPai());
         lancamentosModel.setIdUnidade(lancamentosForm.getIdUnidade());
